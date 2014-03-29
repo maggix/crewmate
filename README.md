@@ -31,6 +31,12 @@ Follow our [contributor guide](https://github.com/crewmate/crewmate/wiki/Contrib
 
 Thanks to the many Ruby projects we're using and the Famfamfam icon collection.
 
+Community
+---------
+
+Join us in our IRC channel (#crewmate on Freenode) to discuss the project.
+
+
 What's new in this fork?
 ------------------------
 

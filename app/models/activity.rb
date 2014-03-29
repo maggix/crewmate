@@ -8,8 +8,8 @@ class Activity < ActiveRecord::Base
 
   scope :for_task_lists, lambda{ where("target_type = 'TaskList' OR target_type = 'Task' OR comment_target_type = 'TaskList' OR comment_target_type = 'Task'") }
   scope :for_conversations, lambda{ where("target_type = 'Conversation' OR comment_target_type = 'Conversation'") }
-  scope :for_tasks, lambda{ where("target_type = ? OR comment_target_type = ?", 'Task', 'Task') }
-  scope :in_targets, lambda { |targets| where("target_id IN (?) OR comment_target_id IN (?)", Array(targets).collect(&:id), Array(targets).collect(&:id)) }
+  scope :for_tasks, where("target_type = ? OR comment_target_type = ?", "Task", "Task" )
+  scope :in_targets, lambda {|targets| where ["target_id IN (?) OR comment_target_id IN (?)", *(Array(targets).collect(&:id)*2)] }
   scope :latest, lambda{ limit_per_page.by_id }
   scope :in_projects, lambda { |projects| where(:project_id => Array(projects).collect(&:id)) }
   scope :limit_per_page, lambda{ limit(Teambox.config.activities_per_page) }
@@ -28,7 +28,7 @@ class Activity < ActiveRecord::Base
       comment_target_type = target.target_type
       comment_target_id = target.target_id
       # touch activity related to that comment's thread
-      Activity.last(:conditions => ["target_type = ? AND target_id = ?", comment_target_type, comment_target_id]).try(:touch)
+      Activity.where(:target_type => comment_target_type, :target_id => comment_target_id).last.try(:touch)
     end
 
     activity = Activity.new(

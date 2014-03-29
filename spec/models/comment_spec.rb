@@ -327,7 +327,7 @@ describe Comment do
 
       comment.should have(1).upload
       comment.uploads.first.destroy
-      comment.reload
+      comment.uploads.reload
       comment.body.should == 'test' # Still has the right body
       comment.should have(0).uploads
     end
@@ -342,7 +342,8 @@ describe Comment do
         comment.uploads.first.destroy
       end.should_not raise_error
 
-      comment.reload.should have(1).uploads
+      comment.uploads.reload
+      comment.should have(1).uploads
     end
 
     it "should allow you to delete the upload and keep the comment if there is no body" do
@@ -355,7 +356,10 @@ describe Comment do
         comment.uploads.first.destroy
       end.should_not raise_error
 
-      comment.reload.should have(0).uploads
+      comment.reload
+      comment.uploads.reload
+
+      comment.should have(0).uploads
       comment.body.should == "File deleted"
     end
 
