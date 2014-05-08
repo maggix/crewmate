@@ -4,7 +4,7 @@
     %meta{ 'http-equiv' => "content-type", :content => "text/html;charset=utf-8" }
     = csrf_meta_tag
     %link{ :rel => "shortcut icon", :href => "/favicon.ico" }
-    %title Teambox
+    %title Crewmate
     = include_stylesheets :sessions
     = sprockets_include_tag :public
 
@@ -16,8 +16,8 @@
           = yield
         .column
           #sidebar
-            = image_tag 'teambox-logo.gif', :alt => 'Teambox logo'
+            = image_tag 'crewmate-logo.gif', :alt => 'Crewmate logo'
             = yield :column
       .footer
-        %p.copyright Copyright &copy; 2011 Teambox. All rights reserved
+        %p.copyright Copyright &copy; 2011 Teambox. &copy; 2013 Crewmate. All rights reserved
 

@@ -1,5 +1,5 @@
 #
-# Main configuration file for functionality of a Teambox app instance.
+# Main configuration file for functionality of a Crewmate app instance.
 #
 
 # Configuration shared between all environments:
@@ -62,7 +62,7 @@ defaults: &defaults
 ########## System settings ##########
 
   # Enable search (you must have thinking_sphinx installed and configured)
-  # See http://wiki.github.com/teambox/teambox/configuring-search for more 
+  # See http://github.com/crewmate/crewmate/wiki/configuring-search for more 
   # information on configuring search
   allow_search: false
 
@@ -184,16 +184,13 @@ defaults: &defaults
   allow_default_organizations: false
 
   # If you want to use Google Analytics, uncomment this and fill your Tracking ID.
-#  analytics_tracking_id:
-
-  # Allow teambox.com to gather statistics about this installation
-  tracking_enabled: false
+  #  analytics_tracking_id:
 
   # Destination where your users could write to ask for help. Accepts an email or website.
-  support: http://help.teambox.com
+  support: https://github.com/crewmate/crewmate
 
-  help_url: http://help.teambox.com/faqs/using-teambox
-  support_url: http://teambox.com/community
+  help_url: https://github.com/crewmate/crewmate/wiki
+  support_url: https://github.com/crewmate/crewmate
 
   heroku: <%= !!ENV['HEROKU_TYPE'] %>
 

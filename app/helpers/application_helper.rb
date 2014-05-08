@@ -8,7 +8,7 @@ module ApplicationHelper
 
   def logo_image
     logo = @organization ? @organization.logo(:top) : "header_logo_black.png"
-    image_tag(logo, :alt => "Teambox")
+    image_tag(logo, :alt => "Crewmate")
   end
 
   def archived_project_strip(project)
@@ -208,14 +208,6 @@ module ApplicationHelper
     I18n.available_locales.map { |code|
       [t(code, :scope => :locales, :locale => code), code.to_s]
     }.sort_by(&:first)
-  end
-
-  # collecting stats about Teambox installations
-  def tracking_code
-    if Teambox.config.tracking_enabled and Rails.env.production?
-      fake_img = "http://teambox.com/logo.png/#{request.host}"
-      %(<div style="background-image: url(#{fake_img})"></div>).html_safe
-    end
   end
 
   def organization_link_colour
